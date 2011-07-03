@@ -6,7 +6,7 @@ module RbReloader
     @map ||= {}
     
     def self.new(file)
-      @map[file] ||= super
+      @map[file] ||= super      
     end
 
     class << self
@@ -56,6 +56,12 @@ module RbReloader
       
     def reload
       FileWatcher.each {|x| x.reload}
+    end
+    
+    def registered_rb
+      files = []
+      FileWatcher.each {|x| files << x.file }
+      files
     end
   end
 end

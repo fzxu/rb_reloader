@@ -37,6 +37,13 @@ describe RbReloader do
     change_back_test4
     
   end
+  
+  it "should has registered 4 files" do
+    current_folder = File.expand_path("..", __FILE__)    
+    RbReloader.register(["#{current_folder}/**/t*.rb"])
+
+    RbReloader.registered_rb.size.should == 4
+  end
 end
 
 def change_test1
